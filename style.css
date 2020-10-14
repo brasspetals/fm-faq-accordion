@@ -1,0 +1,227 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*, 
+*::before, 
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; 
+    /* if default browser font is 16px, this sets it to 10px (1rem = 10px) */
+}
+
+body {
+    background-image: linear-gradient(to bottom, hsl(273, 75%, 66%), hsl(240, 73%, 65%));
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family:'Kumbh Sans', sans-serif;
+    font-size: 1.2rem;
+    color: hsl(240, 6%, 50%);
+    font-weight: 400;
+}
+
+.container {
+    min-height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15rem 2.5rem 9rem 2.5rem;
+}
+
+main {
+    min-width: 310px;
+    max-width: 450px;
+    background-color: #fff;
+    padding: 5rem 0 3rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    box-shadow: 0 3rem 3rem rgba(23, 0, 87, 0.33);
+}
+
+#illustration-container {
+    background-image: url('./images/bg-pattern-mobile.svg');
+    background-position: 3rem 10.75rem;
+    background-repeat: no-repeat;
+    height: 23rem;
+    width: 27rem;
+    margin-top: -15.75rem;
+    margin-right: 2.75rem;
+    margin-bottom: 1rem;
+}
+
+/* FLOATING BOX IMG FOR DESKTOP DESIGN */
+#illustration--box {
+    display: none;
+}
+
+h1 {
+    color: hsl(238, 29%, 16%);
+    font-size: 3.2rem;
+    margin-bottom: 3rem;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+#accordion {
+    padding: 0 2.5rem;
+}
+
+.question {
+    color: hsl(237, 12%, 33%);
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    transition: all .3s;
+}
+
+.question::after {
+    content: url("./images/icon-arrow-down.svg");
+    margin-right: 0;
+    padding-left: .5rem;
+    transition: all .3s ease;
+}
+
+.question:hover {
+    color: hsl(14, 88%, 65%);
+}
+
+.answer {
+    margin-right: 1.75rem;
+    line-height: 1.5;
+    transition: all .3s;
+}
+
+hr.divider {
+    background-color: hsl(240, 5%, 91%);
+    border: 0;
+    height: 1px;
+    margin: 1.75rem 0;
+}
+
+/* HIDE AND DISPLAY ANSWER USING HIDDEN CHECKBOX */
+input {
+    opacity: 0;
+    position: absolute;
+    z-index:-1;
+}
+
+input + .question + .answer {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+input:checked + .question {
+    color: hsl(238, 29%, 16%);
+    font-weight: 700;
+}
+
+input:checked + .question:hover {
+    color: hsl(14, 88%, 65%);
+}
+
+input:checked + .question::after {
+    transform: rotate(-180deg);
+}
+
+input:checked + .question + .answer {
+    margin-top: 1.1rem;
+    max-height: 9rem;
+    opacity:1;
+}
+
+
+/* MEDIA QUERIES */
+@media only screen and (min-width: 900px) {
+    .container {
+        padding: 0 6rem;
+    }
+
+    main {
+        min-width: unset;
+        max-width: 925px;
+        min-height: 515px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 7rem 10rem;
+        background-image: url('./images/illustration-woman-online-desktop.svg'), url('./images/bg-pattern-desktop.svg');
+        background-position: -83px 70px, -578px -295px;
+        background-repeat: no-repeat, no-repeat;
+        background-size: 472px 359px, 966px 945px;
+        position: relative;
+        flex: 1;
+    }
+
+    #illustration-container {
+        background-image: none;
+        background-position: unset;
+        height: unset;
+        width: unset;
+        margin-right: unset;
+        margin-bottom: unset;
+        margin-top: unset;
+    }
+
+    #illustration--main {
+        display: none; 
+    }
+
+    #illustration--box {
+        display: block;
+        position: absolute;
+        left: -94px;
+        top: 205px;
+        background-image: radial-gradient(60px 40px,rgba(0, 1, 87, 0.25) 0%, transparent 100%);
+        background-position: 0;
+        background-repeat: no-repeat;
+    }
+
+    @keyframes float {
+        from {
+            transform: translateY(0);
+            background-position: 0;
+        }
+
+        50% {
+            transform: translateY(-1.25rem);
+            background-position: 0 1.25rem;
+        }
+
+        to {
+            transform: translateY(0);
+            background-position: 0;
+        }
+    }
+
+    #illustration--box:hover {
+        animation-duration: 2s;
+        animation-name: float;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+    }
+
+
+    #accordion {
+        padding: 0 .7rem 0 2rem;
+        width: 50%;
+    }
+
+    h1 {
+        text-align: left;
+        margin-bottom: 4rem;
+    }
+
+    .question {
+        font-size: 1.4rem;
+    }
+}
