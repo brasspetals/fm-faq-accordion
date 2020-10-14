@@ -86,7 +86,6 @@ h1 {
 .question::after {
     content: url("./images/icon-arrow-down.svg");
     margin-right: 0;
-    padding-left: .5rem;
     transition: all .3s ease;
 }
 
